@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+require('dotenv').config();
 const { isURL } = require('../validators/string.validators');
 const bcrypt = require("bcryptjs");
 
@@ -32,9 +33,10 @@ const userSchema = new mongoose.Schema(
             required: [true, "User password is required"],
             match: [PASSWORD_PATTERN, "Invalid user password pattern"],
          },
-         active: {
-            type: Boolean,
-            default: false,
+       bio: { 
+            type: String,
+            minLength: [300, "Bio must be at least 300 characters"],
+            maxLength: [500, "Bio can't be more than 500 characters"],
          },
          avatar: {
             type: String,
@@ -50,8 +52,8 @@ const userSchema = new mongoose.Schema(
     },
     role: {
       type: String,
-      enum: ['admin', 'guess'],
-      default: 'guess'
+      enum: ['admin', 'guest', 'user'],
+      default: 'guest'
     }
   },
   {
@@ -94,4 +96,3 @@ userSchema.methods.checkPassword = function (passwordToCheck) {
 };
     
 module.exports = mongoose.model("User", userSchema);
-module.exports = User;

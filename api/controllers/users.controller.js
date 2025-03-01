@@ -1,9 +1,13 @@
 const createError = require("http-errors");
 const User = require("../models/user.model");
-// const { sendValidationEmail } = require("../config/mailer.config");
+const { sendValidationEmail } = require("../config/mailer.config");
 
 module.exports.create = (req, res, next) => {
-  const { email } = req.body;
+  const { email, username, password } = req.body;
+
+ if (!username) {
+    return next(createError(400, "Username is required"));
+  }
 
   User.findOne({ email })
     .then((user) => {
@@ -16,13 +20,12 @@ module.exports.create = (req, res, next) => {
         );
       } else {
         return User.create({
-          email: req.body.email,
-          password: req.body.password,
-          name: req.body.name,
-          avatar: req.file?.path,
+          username,  
+          email,
+          password,
+          role: req.body.role || 'guest',
         }).then((user) => {
           sendValidationEmail(user);
-
           res.status(201).json(user);
         });
       }
@@ -45,6 +48,15 @@ module.exports.update = (req, res, next) => {
     }
   });
 
+  module.exports.verifyUpdatePermission = (req, res, next) => {
+    if (req.user.role !== 'admin') {
+      if (req.user.id !== req.params.id) {
+        return next(createError(403, "Forbidden: You don't have permission to update"));
+      }
+    }
+    next();
+  };
+  
   // merge body into req.user object
   Object.assign(req.user, permittedBody);
 
@@ -53,6 +65,8 @@ module.exports.update = (req, res, next) => {
     .then((user) => res.json(user))
     .catch(next);
 };
+
+
 
 module.exports.validate = (req, res, next) => {
   User.findOne({ _id: req.params.id, activateToken: req.query.token })
