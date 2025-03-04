@@ -23,7 +23,7 @@ module.exports.create = (req, res, next) => {
           username,
           email,
           password,
-          role: req.body.role || 'guest',
+          role: req.body.role || "guest",
         }).then((user) => {
           res.status(201).json(user);
         });
@@ -53,8 +53,10 @@ module.exports.update = (req, res, next) => {
 };
 
 module.exports.verifyUpdatePermission = (req, res, next) => {
-  if (req.user.role !== 'admin' && req.user.id !== req.params.id) {
-    return next(createError(403, "Forbidden: You don't have permission to update"));
+  if (req.user.role !== "admin" && req.user.id !== req.params.id) {
+    return next(
+      createError(403, "Forbidden: You don't have permission to update")
+    );
   }
   next();
 };
@@ -69,6 +71,12 @@ module.exports.validate = (req, res, next) => {
       return user.save();
     })
     .then((user) => res.json(user))
+    .catch(next);
+};
+
+module.exports.listAll = (req, res, next) => {
+  User.find()
+    .then((users) => res.json(users))
     .catch(next);
 };
 

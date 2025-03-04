@@ -19,7 +19,7 @@ module.exports.detail = (req, res, next) => {
       path: "comments",
       populate: { path: "user", select: "username" },
     })
-    .then((event) => {
+    .then((story) => {
       if (!story)
         next(createError(404, "This story is just in your imagination"));
       else res.json(story);
@@ -70,6 +70,12 @@ module.exports.detailComment = (req, res, next) => {
     .populate("user")
     .populate("story")
     .then((comment) => res.json(comment))
+    .catch(next);
+};
+
+module.exports.getCategories = (req, res, next) => {
+  Story.distinct("categories") 
+    .then((categories) => res.json(categories))
     .catch(next);
 };
 

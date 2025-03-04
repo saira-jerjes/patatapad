@@ -9,6 +9,7 @@ const auth = require("../middleware/session.middleware");
 const storage = require("../config/storage.config");
 
 router.get("/stories", auth.isAuthenticated, stories.list);
+router.get("/stories/categories", stories.getCategories); 
 router.post("/stories", auth.isAuthenticated, stories.create);
 router.get("/stories/:id", stories.detail);
 router.delete("/stories/:id", auth.isAuthenticated, stories.delete);
@@ -19,7 +20,7 @@ router.get("/stories/:id/comments/:commentId", auth.isAuthenticated, stories.det
 
 router.post("/users", users.create);
 router.patch("/users/me", auth.isAuthenticated, users.update);
-router.get("/users/", auth.isAuthenticated, users.profile);
+router.get("/users", auth.isAuthenticated, users.listAll);
 router.get("/users/:id/validate", users.validate);
 
 router.post("/sessions", sessions.create);
