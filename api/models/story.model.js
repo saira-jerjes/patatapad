@@ -22,13 +22,13 @@ const storySchema = new mongoose.Schema(
     extract: {
       type: String,
       required: true,
-      minLength: [500, "Extract needs to be at least 500 characters"],
+      minLength: [50, "Extract needs to be at least 50 characters"],
       maxLength: [1500, "Title can't be longer than 1500 characters"],
     },
     content: {
       type: String,
       required: true,
-      minLength: [3000, "Extract needs to be at least 500 characters"]
+      minLength: [300, "Extract needs to be at least 300 characters"]
     },
         categories: [String],
     author: {

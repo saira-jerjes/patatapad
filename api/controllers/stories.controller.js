@@ -3,7 +3,7 @@ const Story = require("../models/story.model");
 const Comment = require("../models/comment.model");
 
 module.exports.create = (req, res, next) => {
-  const story = new Story({ ...req.body, author: req.user.id });
+  const story = { ...req.body, author: req.user.id };
 
   Story.create(story)
     .then((story) => res.status(201).json(story))
@@ -11,6 +11,8 @@ module.exports.create = (req, res, next) => {
 };
 
 module.exports.detail = (req, res, next) => {
+  const { id } = req.params;
+
   Story.findById(id)
     .populate("author", "username")
     .populate({

@@ -6,31 +6,12 @@ module.exports.create = (req, res, next) => {
 
   User.findOne({ email })
     .then((user) => {
-      if (user) {
-        user
-          .checkPassword(password)
-          .then((match) => {
-            if (match) {
-              req.session.userId = user.id;
-              res.status(201).json(user);
-            } else {
-              next(
-                createError(401, {
-                  message: "Bad credentials",
-                  errors: { email: "Invalid email or password" },
-                })
-              );
-            }
-          })
-          .catch(next);
-      } else {
-        next(
-          createError(401, {
-            message: "Bad credentials",
-            errors: { email: "Invalid email or password" },
-          })
-        );
+      if (!user || !user.checkPassword(password)) {
+        throw createError(401, "Invalid email or password");
       }
+
+      req.session.userId = user._id; 
+      res.status(200).json({ message: "Logged in successfully" });
     })
     .catch(next);
 };

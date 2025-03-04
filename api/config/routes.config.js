@@ -9,10 +9,10 @@ const auth = require("../middleware/session.middleware");
 const storage = require("../config/storage.config");
 
 router.get("/stories", auth.isAuthenticated, stories.list);
-router.post("/stories", auth.isAuthenticated, auth.isAdmin, stories.create);
+router.post("/stories", auth.isAuthenticated, stories.create);
 router.get("/stories/:id", stories.detail);
-router.delete("/stories/:id", auth.isAuthenticated, auth.isAdmin, stories.delete);
-router.patch("/stories/:id", auth.isAuthenticated, auth.isAdmin, stories.update);
+router.delete("/stories/:id", auth.isAuthenticated, stories.delete);
+router.patch("/stories/:id", auth.isAuthenticated, stories.update);
 
 router.post("/stories/:id/comments", auth.isAuthenticated, stories.createComment);
 router.get("/stories/:id/comments/:commentId", auth.isAuthenticated, stories.detailComment);

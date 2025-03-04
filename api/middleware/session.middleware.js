@@ -2,6 +2,7 @@ const createError = require('http-errors');
 const User = require('../models/user.model');
 
 module.exports.loadSessionUser = (req, res, next) => {
+  const { userId } = req.session;
   if (!userId) {
     req.user = undefined;
     next();
