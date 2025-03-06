@@ -21,6 +21,6 @@ const getStories = (id) => http.get(`/stories/${id}`);
 
 const deleteStory = (id) => http.delete(`/stories/${id}`);
 
-export { login, getStory, deleteStory, register, profile };
+export { login, getStories, deleteStory, register, profile };
 
 // tengo que enlistar stories

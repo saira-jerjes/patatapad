@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom';
-import { useAuthContext } from '../../../contexts/auth-context';
+import { useAuthContext } from '../../contexts/auth-context';
 
 function Navbar() {
   const { user, logout } = useAuthContext();
 
   return (
-    <nav className="navbar navbar-expand-lg bg-body-tertiary">
+    <nav className="navbar navbar-expand-lg bg-body-tertiary fixed-top">
       <div className="container">
         <Link className="navbar-brand" to="/">PatataPad</Link>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">

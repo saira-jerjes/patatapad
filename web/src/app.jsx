@@ -1,4 +1,4 @@
-import Navbar from "./components/ui/navbar/navbar";
+import Navbar from "./components/navbar/navbar";
 import { Route, Routes } from "react-router-dom";
 import {
   HomePage,
@@ -9,7 +9,7 @@ import {
   LoginPage,
   RegisterPage,
 } from "./pages";
-import { PrivateRoute } from "./guards";
+// import { PrivateRoute } from "./guards";
 
 function App() {
   return (
