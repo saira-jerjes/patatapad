@@ -16,11 +16,11 @@ const profile = () => http.get("/users/me");
 const register = (user) => http.post("/users", user);
 const login = (user) => http.post("/sessions", user);
 
-
 const getStories = (id) => http.get(`/stories/${id}`);
-
+const listStories = () => http.get("/stories");
+const listHistoriasDestacadas = (max) => http.get(`/stories/featured?max=${max}`);
 const deleteStory = (id) => http.delete(`/stories/${id}`);
 
-export { login, getStories, deleteStory, register, profile };
+const listCategorias = () => http.get("/stories/categories");
 
-// tengo que enlistar stories
+export { login, getStories, listStories, listHistoriasDestacadas, deleteStory, register, profile, listCategorias };

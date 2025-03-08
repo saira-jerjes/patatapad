@@ -1,0 +1,20 @@
+.story-item {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+  }
+  .story-item:hover {
+    transform: scale(1.05);
+  }
+  .story-item .card-body {
+    padding: 15px;
+  }
+  .story-item .btn-primary {
+    background-color: #FF0092;
+    border: none;
+  }
+  .story-item .btn-primary:hover {
+    background-color: #D40076;
+  }

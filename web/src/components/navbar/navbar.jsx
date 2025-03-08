@@ -1,47 +1,61 @@
-import { Link } from 'react-router-dom';
-import { useAuthContext } from '../../contexts/auth-context';
+/* eslint-disable no-unused-vars */
+import { Link } from "react-router-dom";
+import { useAuthContext } from "../../contexts/auth-context";
+import { useState } from "react";
+import "./navbar.css";
 
 function Navbar() {
   const { user, logout } = useAuthContext();
+  const [isNavCollapsed, setIsNavCollapsed] = useState(true);
+
+  const toggleNavbar = () => setIsNavCollapsed(!isNavCollapsed);
+  const closeNavbar = () => setIsNavCollapsed(true);
 
   return (
-    <nav className="navbar navbar-expand-lg bg-body-tertiary fixed-top">
-      <div className="container">
-        <Link className="navbar-brand" to="/">PatataPad</Link>
-        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse" id="main-nav">
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            <li className="nav-item">
-              <Link className="nav-link active" to="/">Inicio</Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/categorias">Categorías</Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/novedades">Novedades</Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/autores">Autores</Link>
-            </li>
-          </ul>
-          <ul className='navbar-nav'>
-            { user ? (
-              <>
-                <li className="nav-item">
-                  <Link className="nav-link" to="/profile">{user.email}</Link>
-                </li>
-                <li className="nav-item">
-                  <button className="nav-link btn btn-link" onClick={() => logout()}>Logout</button>
-                </li>
-              </>
-            ) : (
-              <li className="nav-item">
-                <Link className="nav-link" to="/login">Iniciar sesión</Link>
-              </li>
-            )}
-          </ul>
+    <nav className="navbar fixed-top transparent-navbar">
+      <div className="container navbar-container">
+        <div className="nav-left">
+          <Link className="nav-link" to="/novedades" onClick={closeNavbar}>
+            Novedades
+          </Link>
+          <Link className="nav-link" to="/categorias" onClick={closeNavbar}>
+            Categorías
+          </Link>
+          <Link className="nav-link" to="/autores" onClick={closeNavbar}>
+            Autores
+          </Link>
+        </div>
+        <div className="nav-center">
+          <Link className="navbar-brand" to="/">
+            <img
+              className="logo"
+              src="/public/ptatapad.png"
+              alt="PtataPad Logo"
+            />
+          </Link>
+        </div>
+        <div className="nav-right">
+        <i className="fa-solid fa-magnifying-glass"></i>
+          {user ? (
+            <>
+              <Link className="nav-link" to="/profile" onClick={closeNavbar}>
+                {user.email}
+              </Link>
+              <button
+                className="logout-btn"
+                onClick={() => {
+                  logout();
+                  closeNavbar();
+                }}
+              >
+                Logout
+              </button>
+            </>
+          ) : (
+            <Link className="btn login-btn" to="/login" onClick={closeNavbar}>
+              Iniciar sesión
+            </Link>
+          )}
         </div>
       </div>
     </nav>

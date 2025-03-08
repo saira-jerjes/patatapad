@@ -1,0 +1,94 @@
+.navbar {
+  padding: 10px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 2px solid #ff0092;
+}
+
+.navbar-container {
+  display: flex;
+  width: 100%;
+  max-width: 1200px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-left {
+  display: flex;
+  gap: 20px;
+}
+
+.nav-left .nav-link {
+  color: #ff0080;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.nav-left .nav-link:hover {
+  text-decoration: underline;
+}
+
+.nav-center {
+  flex-grow: 1;
+  text-align: center;
+}
+
+.navbar-brand {
+  font-size: 24px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #ff0092;
+}
+
+nav .fa-magnifying-glass {
+    color: #ff0092; 
+    font-size: 20px;
+    cursor: pointer; 
+    transition: color 0.3s ease;
+  }
+  
+  nav .fa-magnifying-glass:hover {
+    color: #ff66b2; 
+  }
+
+
+.logo {
+  height: 56px;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.search-btn {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  color: #ff0092;
+}
+
+.search-input {
+  border: none;
+  border-bottom: 2px solid #ff0092;
+  background: transparent;
+  padding: 5px;
+  outline: none;
+  width: 150px;
+}
+
+.login-btn {
+  background: #ff0092;
+  color: white;
+  font-weight: bold;
+  padding: 8px 15px;
+  border-radius: 20px;
+  text-decoration: none;
+}
+
+.login-btn:hover {
+  background: #ff0092;
+}

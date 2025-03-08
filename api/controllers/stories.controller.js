@@ -4,6 +4,7 @@ const Comment = require("../models/comment.model");
 
 module.exports.create = (req, res, next) => {
   const story = { ...req.body, author: req.user.id };
+  story.featured = req.body.featured || false;
 
   Story.create(story)
     .then((story) => res.status(201).json(story))
@@ -53,6 +54,15 @@ module.exports.delete = (req, res, next) => {
       else res.status(204).send();
     })
     .catch((error) => next(error));
+};
+
+module.exports.getFeaturedStories = (req, res, next) => {
+  Story.find({ featured: true })
+    .populate("author", "username")
+    .then((featuredStories) => {
+      res.json(featuredStories);
+    })
+    .catch(next);
 };
 
 module.exports.createComment = (req, res, next) => {

@@ -10,6 +10,7 @@ const storage = require("../config/storage.config");
 
 router.get("/stories", auth.isAuthenticated, stories.list);
 router.get("/stories/categories", stories.getCategories); 
+router.get("/stories/featured", stories.getFeaturedStories);
 router.post("/stories", auth.isAuthenticated, stories.create);
 router.get("/stories/:id", stories.detail);
 router.delete("/stories/:id", auth.isAuthenticated, stories.delete);
