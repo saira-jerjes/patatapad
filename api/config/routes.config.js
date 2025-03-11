@@ -23,6 +23,7 @@ router.post("/users", users.create);
 router.patch("/users/me", auth.isAuthenticated, users.update);
 router.get("/users", auth.isAuthenticated, users.listAll);
 router.get("/users/:id/validate", users.validate);
+router.get("/users/me", users.validate, users.profile);
 
 router.post("/sessions", sessions.create);
 router.delete("/sessions", auth.isAuthenticated, sessions.destroy);

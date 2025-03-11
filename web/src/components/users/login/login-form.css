@@ -1,0 +1,31 @@
+.form-body {
+   margin-top: 300px;
+   width: 35%;
+   margin-right: 10%;
+   
+}
+.fondo{
+   height: 100vh;  
+}
+
+.btn {
+    color:white;
+    background: #ff0092;
+    border: transparent;
+}
+
+.btn:hover {
+    color:white;
+    background: #f38bc6;
+    border: transparent;
+
+}
+.link-regist {
+    color: #ff0092;
+    font-size: small;
+}
+
+.login-body {
+    display: flex;
+    justify-content: space-between;
+}

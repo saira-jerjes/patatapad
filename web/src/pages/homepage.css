@@ -1,4 +1,4 @@
-/* Estilos generales */
+
 body {
     font-family: 'Poppins', sans-serif;
     background-color: #f8f8f8;
@@ -16,11 +16,12 @@ body {
     justify-content: flex-start;
     padding: 50px;
     color: #ff0099;
+    background: url('../src/assets/BANNER-HOME.webp') no-repeat center center fixed;
+    background-size: cover;
   }
-  
-  /* Texto principal */
+
   .homepage-content {
-    max-width: 600px;
+    max-width: 100%;
   }
   
   .homepage h1 {
@@ -35,7 +36,7 @@ body {
     font-weight: 500;
   }
   
-  /* Botones */
+  
   .button-container {
     margin-top: 20px;
   }

@@ -3,7 +3,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border-bottom: 2px solid #ff0092;
 }
 
 .navbar-container {
@@ -20,7 +19,7 @@
 }
 
 .nav-left .nav-link {
-  color: #ff0080;
+  color: #ff0092;
   font-weight: bold;
   text-decoration: none;
 }
@@ -91,4 +90,14 @@ nav .fa-magnifying-glass {
 
 .login-btn:hover {
   background: #ff0092;
+}
+
+.fa-solid {
+  color: #ff0092;
+  cursor: pointer;
+}
+
+.fa-solid:hover {
+  color: #fb98d0;
+  cursor: pointer;
 }

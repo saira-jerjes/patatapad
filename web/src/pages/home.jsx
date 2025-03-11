@@ -12,8 +12,8 @@ function HomePage() {
         <h1>LA VIDA DESPUÉS DE TI</h1>
         <p>La nueva historia del mes! Elegido por vosotros con más de 4.2 estrellas y 10,000 lecturas.</p>
         <div className="button-container">
-          <a href="/historia" className="button-primary">Ver historia</a>
-          <a href="/historias-del-mes" className="button-secondary">Historias del mes</a>
+        <Link to="/featured-story" className="button-primary">Ver historia</Link>
+        <Link to="/novedades" className="button-secondary">Historias del mes</Link>
         </div>
       </div>
     </div>

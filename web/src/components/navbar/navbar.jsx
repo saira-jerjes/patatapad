@@ -12,7 +12,7 @@ function Navbar() {
   const closeNavbar = () => setIsNavCollapsed(true);
 
   return (
-    <nav className="navbar fixed-top transparent-navbar">
+    <nav className="navbar fixed-top transparent-navbar collapsed">
       <div className="container navbar-container">
         <div className="nav-left">
           <Link className="nav-link" to="/novedades" onClick={closeNavbar}>
@@ -29,7 +29,7 @@ function Navbar() {
           <Link className="navbar-brand" to="/">
             <img
               className="logo"
-              src="/public/ptatapad.png"
+              src="./ptatapad.png"
               alt="PtataPad Logo"
             />
           </Link>
@@ -38,11 +38,11 @@ function Navbar() {
         <i className="fa-solid fa-magnifying-glass"></i>
           {user ? (
             <>
-              <Link className="nav-link" to="/profile" onClick={closeNavbar}>
+              <Link className="nav-link fa-solid fa-user" to="/profile" onClick={closeNavbar}>
                 {user.email}
               </Link>
               <button
-                className="logout-btn"
+                className="btn login-btn"
                 onClick={() => {
                   logout();
                   closeNavbar();

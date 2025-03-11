@@ -5,3 +5,4 @@ export { default as AutoresPage } from './authors';
 export { default as HistoriaDetallePage } from './story-detail';
 export { default as LoginPage } from './login';
 export { default as RegisterPage } from './register';
+export { default as MePage } from './profile';

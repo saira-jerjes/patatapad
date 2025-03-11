@@ -1,10 +1,8 @@
-import  PageLayout  from "../components/layouts/page-layout/page-layout";
+import { LoginForm } from '../components/users/index';
 
 function LoginPage() {
     return (
-      <PageLayout>
-    
-      </PageLayout>
+      <LoginForm/>
     );
   }
   
