@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const router = express.Router();
 const createError = require("http-errors");
 const stories = require("../controllers/stories.controller"); 
+const Story = require("../models/story.model"); 
 const users = require("../controllers/users.controller");
 const sessions = require("../controllers/sessions.controller");
 const auth = require("../middleware/session.middleware");
@@ -23,10 +24,27 @@ router.post("/users", users.create);
 router.patch("/users/me", auth.isAuthenticated, users.update);
 router.get("/users", auth.isAuthenticated, users.listAll);
 router.get("/users/:id/validate", users.validate);
-router.get("/users/me", users.validate, users.profile);
+router.get("/users/me", auth.isAuthenticated, users.profile);
+
+router.get("/users/:userId/historias-escritas", auth.isAuthenticated, (req, res) => {
+  const userId = req.params.userId;
+  if (!userId) {
+    return res.status(400).json({ message: "User ID is required" });
+  }
+
+  Story.find({ author: userId })
+    .then((stories) => res.json(stories))
+    .catch((error) => {
+      console.error(error);
+      res.status(500).json({ message: "Error fetching stories" });
+    });
+});
+
 
 router.post("/sessions", sessions.create);
 router.delete("/sessions", auth.isAuthenticated, sessions.destroy);
+
+
 
 router.use((req, res, next) => {
   next(createError(404, "Route not found"));

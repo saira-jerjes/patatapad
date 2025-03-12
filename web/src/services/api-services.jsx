@@ -13,7 +13,11 @@ http.interceptors.response.use(
 );
 
 const profile = () => http.get("/users/me");
-const register = (user) => http.post("/users", user);
+const register = (user) =>
+  http.post("/users", user, {
+    headers: { "Content-Type": "application/json" }
+  });
+
 const login = (user) => http.post("/sessions", user);
 
 const getStories = (id) => http.get(`/stories/${id}`);
@@ -23,4 +27,7 @@ const deleteStory = (id) => http.delete(`/stories/${id}`);
 
 const listCategorias = () => http.get("/stories/categories");
 
-export { login, getStories, listStories, listHistoriasDestacadas, deleteStory, register, profile, listCategorias };
+const getHistoriasEscritas = (userId) => http.get(`/users/${userId}/historias-escritas`);
+const getHistoriasLeidas = (userId) => http.get(`/users/${userId}/historias-leidas`);
+
+export { login, getStories, listStories, listHistoriasDestacadas, deleteStory, register, profile, listCategorias, getHistoriasEscritas, getHistoriasLeidas };

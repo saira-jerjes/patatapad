@@ -23,7 +23,7 @@ module.exports.create = (req, res, next) => {
           username,
           email,
           password,
-          role: req.body.role || "guest",
+          role: "user",
         }).then((user) => {
           res.status(201).json(user);
         });
@@ -81,5 +81,20 @@ module.exports.listAll = (req, res, next) => {
 };
 
 module.exports.profile = (req, res, next) => {
-  res.json(req.user);
+  User.findById(req.user.id)
+    .populate("writtenStories") 
+    .populate("readingStories")
+    .then((user) => {
+      if (!user) {
+        return next(createError(404, "User not found"));
+      }
+      res.json({
+        username: user.username,
+        email: user.email,
+        role: user.role,
+        writtenStories: user.writtenStories,
+        readingStories: user.readingStories,
+      });
+    })
+    .catch(next);
 };

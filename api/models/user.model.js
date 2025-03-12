@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 require('dotenv').config();
 const { isURL } = require('../validators/string.validators');
 const bcrypt = require("bcryptjs");
+const Story = require("./story.model");
 
 const SALT_WORK_FACTOR = 10;
 const EMAIL_PATTERN =
@@ -54,7 +55,15 @@ const userSchema = new mongoose.Schema(
       type: String,
       enum: ['admin', 'guest', 'user'],
       default: 'guest'
-    }
+    },
+    writtenStories: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Story", 
+    }],
+    readStories: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Story", 
+    }]
   },
   {
     timestamps: true,

@@ -1,10 +1,8 @@
-import  PageLayout  from "../components/layouts/page-layout/page-layout";
+import { RegisterForm } from "../components/users";
 
 function RegisterPage() {
     return (
-      <PageLayout>
-    
-      </PageLayout>
+      <RegisterForm/>
     );
   }
   

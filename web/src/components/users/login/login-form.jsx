@@ -38,7 +38,7 @@ function LoginForm() {
       <form className="form-login" onSubmit={handleSubmit(handleLogin)}>
         <div className="input-group email">
           <span className="input-group-text">
-            <i className="fa fa-user fa-fw"></i>
+            <i className="fa fa-envelope fa-fw"></i>
           </span>
           <input
             type="email"
