@@ -96,7 +96,6 @@ module.exports.profile = (req, res, next) => {
 
   User.findById(req.user.id) 
     .populate("writtenStories") 
-    .populate("readStories")
     .then((user) => {
       if (!user) {
         return next(createError(404, "User not found"));
@@ -107,10 +106,22 @@ module.exports.profile = (req, res, next) => {
         email: user.email,
         role: user.role,
         writtenStories: user.writtenStories,
-        readingStories: user.readStories,
       });
     })
     .catch(next);
 };
 
+module.exports.getWrittenStories = (req, res, next) => {
+  const userId = req.params.id;
+  console.log('userId:', userId); 
+  User.findById(userId)
+    .then(user => {
+      if (!user) {
+        return next(createError(404, "User not found"));
+      }
+      return user.writtenStories;
+    })
+    .then(writtenStories => res.json(writtenStories))
+    .catch(next);
+};
 

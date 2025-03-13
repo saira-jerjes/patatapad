@@ -22,7 +22,7 @@ function App() {
         <Route path="/categorias" element={<CategoriasPage />} />
         <Route path="/novedades" element={<NovedadesPage />} />
         <Route path="/autores" element={<AutoresPage />} />
-        <Route path="/historias/:id" element={<HistoriaDetallePage />} />
+        <Route path="/stories/:id" element={<HistoriaDetallePage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/profile" element={<ProfilePage />} />

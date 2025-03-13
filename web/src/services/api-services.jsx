@@ -27,7 +27,7 @@ const deleteStory = (id) => http.delete(`/stories/${id}`);
 
 const listCategorias = () => http.get("/stories/categories");
 
-const getHistoriasEscritas = (userId) => http.get(`/users/${userId}/historias-escritas`);
-const getHistoriasLeidas = (userId) => http.get(`/users/${userId}/historias-leidas`);
+const getWrittenStories = (userId) => http.get(`/users/${userId}/written-stories`);
 
-export { login, getStories, listStories, listHistoriasDestacadas, deleteStory, register, profile, listCategorias, getHistoriasEscritas, getHistoriasLeidas };
+
+export { login, getStories, listStories, listHistoriasDestacadas, deleteStory, register, profile, listCategorias, getWrittenStories };

@@ -18,3 +18,9 @@
   .story-item .btn-primary:hover {
     background-color: #D40076;
   }
+
+  .card-text {
+    white-space: nowrap;        
+    overflow: hidden;           
+    text-overflow: ellipsis;    
+  }

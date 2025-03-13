@@ -60,10 +60,6 @@ const userSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "Story", 
     }],
-    readStories: [{
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Story", 
-    }],
     wishlist: [{
       type: mongoose.Schema.Types.ObjectId,
       ref: "Story",

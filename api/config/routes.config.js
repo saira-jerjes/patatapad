@@ -26,7 +26,7 @@ router.get("/users", auth.isAuthenticated, users.listAll);
 router.get("/users/:id/validate", users.validate);
 router.get("/users/me", auth.isAuthenticated, users.profile);
 
-router.get("/users/:userId/historias-escritas", auth.isAuthenticated, (req, res) => {
+router.get("/users/:userId/written-stories", auth.isAuthenticated, (req, res) => {
   const userId = req.params.userId;
   if (!userId) {
     return res.status(400).json({ message: "User ID is required" });
@@ -40,35 +40,14 @@ router.get("/users/:userId/historias-escritas", auth.isAuthenticated, (req, res)
     });
 });
 
-router.get("/users/:userId/historias-leidas", auth.isAuthenticated, (req, res) => {
-  const userId = req.params.userId;
-  if (!userId) {
-    return res.status(400).json({ message: "User ID is required" });
-  }
-
-  User.findById(userId)
-    .populate("readStories") 
-    .then((user) => {
-      if (!user) {
-        return res.status(404).json({ message: "User not found" });
-      }
-      res.json(user.readStories); 
-    })
-    .catch((error) => {
-      console.error(error);
-      res.status(500).json({ message: "Error fetching read stories" });
-    });
-});
-
 
 router.post("/sessions", sessions.create);
 router.delete("/sessions", auth.isAuthenticated, sessions.destroy);
 
 router.get("/:id", async (req, res) => {
   try {
-    const user = await User.findById(req.params.id)
+    const user = await user.findById(req.params.id)
       .populate("writtenStories")
-      .populate("readStories")
       .populate("wishlist");
     res.json(user);
   } catch (err) {
