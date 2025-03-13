@@ -42,7 +42,11 @@ const storySchema = new mongoose.Schema(
     }],
     featured: {
       type: Boolean,
-      default: false, // Por defecto, no es destacada
+      default: false,
+    },
+    likesCount: {
+      type: Number,
+      default: 0,
     }
   },
   {

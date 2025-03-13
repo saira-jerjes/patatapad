@@ -8,7 +8,7 @@ import {
   HistoriaDetallePage,
   LoginPage,
   RegisterPage,
-  MePage
+  ProfilePage
 } from "./pages";
 // import { PrivateRoute } from "./guards";
 
@@ -25,7 +25,7 @@ function App() {
         <Route path="/historias/:id" element={<HistoriaDetallePage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
-        <Route path="/profile" element={<MePage />} />
+        <Route path="/profile" element={<ProfilePage />} />
       </Routes>
     </>
   );

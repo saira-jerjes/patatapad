@@ -9,6 +9,14 @@ module.exports.create = (req, res, next) => {
     return next(createError(400, "Username is required"));
   }
 
+  if (!EMAIL_PATTERN.test(email)) {
+    return next(createError(400, "Invalid email format"));
+  }
+
+  if (!PASSWORD_PATTERN.test(password)) {
+    return next(createError(400, "Password must be at least 8 characters"));
+  }
+
   User.findOne({ email })
     .then((user) => {
       if (user) {
@@ -31,6 +39,7 @@ module.exports.create = (req, res, next) => {
     })
     .catch((error) => next(error));
 };
+
 
 module.exports.update = (req, res, next) => {
   const permittedBody = {
@@ -81,20 +90,27 @@ module.exports.listAll = (req, res, next) => {
 };
 
 module.exports.profile = (req, res, next) => {
-  User.findById(req.user.id)
+  if (!req.user) { 
+    return next(createError(401, "No autenticado"));
+  }
+
+  User.findById(req.user.id) 
     .populate("writtenStories") 
-    .populate("readingStories")
+    .populate("readStories")
     .then((user) => {
       if (!user) {
         return next(createError(404, "User not found"));
       }
       res.json({
+        id: user.id,
         username: user.username,
         email: user.email,
         role: user.role,
         writtenStories: user.writtenStories,
-        readingStories: user.readingStories,
+        readingStories: user.readStories,
       });
     })
     .catch(next);
 };
+
+

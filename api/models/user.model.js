@@ -63,6 +63,14 @@ const userSchema = new mongoose.Schema(
     readStories: [{
       type: mongoose.Schema.Types.ObjectId,
       ref: "Story", 
+    }],
+    wishlist: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Story",
+    }],
+    following: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
     }]
   },
   {

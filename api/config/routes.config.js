@@ -40,11 +40,73 @@ router.get("/users/:userId/historias-escritas", auth.isAuthenticated, (req, res)
     });
 });
 
+router.get("/users/:userId/historias-leidas", auth.isAuthenticated, (req, res) => {
+  const userId = req.params.userId;
+  if (!userId) {
+    return res.status(400).json({ message: "User ID is required" });
+  }
+
+  User.findById(userId)
+    .populate("readStories") 
+    .then((user) => {
+      if (!user) {
+        return res.status(404).json({ message: "User not found" });
+      }
+      res.json(user.readStories); 
+    })
+    .catch((error) => {
+      console.error(error);
+      res.status(500).json({ message: "Error fetching read stories" });
+    });
+});
+
 
 router.post("/sessions", sessions.create);
 router.delete("/sessions", auth.isAuthenticated, sessions.destroy);
 
+router.get("/:id", async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id)
+      .populate("writtenStories")
+      .populate("readStories")
+      .populate("wishlist");
+    res.json(user);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
 
+router.post("/:id/follow", async (req, res) => {
+  const { followerId } = req.body;
+  try {
+    const user = await User.findById(req.params.id);
+    if (!user.following.includes(followerId)) {
+      user.following.push(followerId);
+      await user.save();
+    }
+    res.json({ message: "Seguido correctamente" });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+router.get("/featured", async (req, res) => {
+  try {
+    const stories = await Story.find({ featured: true }).limit(5);
+    res.json(stories);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+router.get("/category/:category", async (req, res) => {
+  try {
+    const stories = await Story.find({ categories: req.params.category });
+    res.json(stories);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
 
 router.use((req, res, next) => {
   next(createError(404, "Route not found"));

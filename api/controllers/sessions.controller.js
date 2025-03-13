@@ -10,8 +10,17 @@ module.exports.create = (req, res, next) => {
         throw createError(401, "Invalid email or password");
       }
 
-      req.session.userId = user._id; 
-      res.status(200).json({ message: "Logged in successfully" });
+      req.session.userId = user._id;
+
+      res.status(200).json({
+        message: "Logged in successfully",
+        user: {
+          id: user._id,
+          username: user.username,
+          email: user.email,
+          role: user.role,
+        },
+      });
     })
     .catch(next);
 };

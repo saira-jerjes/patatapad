@@ -3,33 +3,32 @@ import PageLayout  from "../components/layouts/page-layout/page-layout";
 import { useAuthContext } from "../contexts/auth-context";
 import HistoriaItem from "../components/stories/story-item/story-item";
 import * as PatatapadApi from "../services/api-services";
+import StoryItem from "../components/stories/story-item/story-item";
 
-function MePage() {
+function ProfilePage() {
   const { user } = useAuthContext();
   const [historiasEscritas, setHistoriasEscritas] = useState([]);
   const [historiasLeidas, setHistoriasLeidas] = useState([]);
-  const [isLoading, setIsLoading] = useState(true); // Estado para manejar la carga del usuario
+  const [isLoading, setIsLoading] = useState(true); 
 
   useEffect(() => {
-    console.log(user); // Asegúrate de que user está siendo cargado
+    console.log(user);
     if (user && user.id) {
-      // Si el usuario y su id están disponibles, cargamos las historias
       PatatapadApi.getHistoriasEscritas(user.id)
         .then(setHistoriasEscritas)
         .catch(console.error);
-     
+
       PatatapadApi.getHistoriasLeidas(user.id)
         .then(setHistoriasLeidas)
         .catch(console.error);
-      
-      setIsLoading(false); // Una vez que se haya cargado el usuario, cambiamos el estado de carga
+
+      setIsLoading(false);
     } else {
       console.error("User ID is undefined");
-      setIsLoading(false); // De igual forma, actualizamos el estado de carga si no hay usuario
+      setIsLoading(false);
     }
   }, [user]);
 
-  // Mientras el usuario está cargando, mostramos un mensaje o loading spinner
   if (isLoading) {
     return (
       <PageLayout>
@@ -37,8 +36,14 @@ function MePage() {
       </PageLayout>
     );
   }
+  if (!user) {
+    return (
+      <PageLayout>
+        <h3 className="fw-light text-center mt-5">Debes iniciar sesión para ver tu perfil</h3>
+      </PageLayout>
+    );
+  }
 
-  // Si el usuario no está logueado, mostramos un mensaje
   if (!user) {
     return (
       <PageLayout>
@@ -53,19 +58,19 @@ function MePage() {
 
       <h4 className="fw-light mt-4">Mis historias</h4>
       <div className="d-flex overflow-auto gap-3">
-        {historiasEscritas.map(historia => (
-          <HistoriaItem key={historia.id} historia={historia} />
+        {historiasEscritas.map(story => (
+          <StoryItem key={story.id} story={story} />
         ))}
       </div>
 
       <h4 className="fw-light mt-4">Historial de lectura</h4>
       <div className="d-flex overflow-auto gap-3">
-        {historiasLeidas.map(historia => (
-          <HistoriaItem key={historia.id} historia={historia} />
+        {historiasLeidas.map(story => (
+          <StoryItem key={story.id} story={story} />
         ))}
       </div>
     </PageLayout>
   );
 }
 
-export default MePage;
+export default ProfilePage;
