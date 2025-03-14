@@ -3,13 +3,17 @@ const Story = require("../models/story.model");
 const Comment = require("../models/comment.model");
 
 module.exports.create = (req, res, next) => {
-  const story = { ...req.body, author: req.user.id };
-  story.featured = req.body.featured || false;
+  const storyData = {
+    ...req.body,
+    author: req.user.id, 
+    featured: req.body.featured || false
+  };
 
-  Story.create(story)
+  Story.create(storyData)
     .then((story) => res.status(201).json(story))
     .catch((error) => next(error));
 };
+
 
 module.exports.detail = (req, res, next) => {
   const { id } = req.params;

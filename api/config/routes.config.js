@@ -9,7 +9,7 @@ const sessions = require("../controllers/sessions.controller");
 const auth = require("../middleware/session.middleware");
 const storage = require("../config/storage.config");
 
-router.get("/stories", auth.isAuthenticated, stories.list);
+router.get("/stories", stories.list);
 router.get("/stories/categories", stories.getCategories); 
 router.get("/stories/featured", stories.getFeaturedStories);
 router.post("/stories", auth.isAuthenticated, stories.create);

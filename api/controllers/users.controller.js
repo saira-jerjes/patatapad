@@ -1,6 +1,8 @@
 const createError = require("http-errors");
 const User = require("../models/user.model");
-const { sendValidationEmail } = require("../config/mailer.config");
+const { EMAIL_PATTERN } = require("../models/user.model");
+const { PASSWORD_PATTERN } = require("../models/user.model");
+
 
 module.exports.create = (req, res, next) => {
   const { email, username, password } = req.body;

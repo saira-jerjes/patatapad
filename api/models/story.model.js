@@ -40,10 +40,6 @@ const storySchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Comment'
     }],
-    featured: {
-      type: Boolean,
-      default: false,
-    },
     likesCount: {
       type: Number,
       default: 0,
