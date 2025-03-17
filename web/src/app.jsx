@@ -4,7 +4,6 @@ import {
   HomePage,
   CategoriasPage,
   NovedadesPage,
-  AutoresPage,
   HistoriaDetallePage,
   LoginPage,
   RegisterPage,
@@ -21,7 +20,6 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/categorias" element={<CategoriasPage />} />
         <Route path="/novedades" element={<NovedadesPage />} />
-        <Route path="/autores" element={<AutoresPage />} />
         <Route path="/stories/:id" element={<HistoriaDetallePage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />

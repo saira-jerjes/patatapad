@@ -29,7 +29,7 @@ const createStory = (storyData) =>
 const listHistoriasDestacadas = (max) => http.get(`/stories/featured?max=${max}`);
 const deleteStory = (id) => http.delete(`/stories/${id}`);
 
-const listCategorias = () => http.get("/stories/categories");
+const listCategorias = () => http.get("/categories");
 
 const getWrittenStories = (userId) => http.get(`/users/${userId}/written-stories`);
 

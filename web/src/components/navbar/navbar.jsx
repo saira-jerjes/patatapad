@@ -21,9 +21,6 @@ function Navbar() {
           <Link className="nav-link" to="/categorias" onClick={closeNavbar}>
             Categorías
           </Link>
-          <Link className="nav-link" to="/autores" onClick={closeNavbar}>
-            Autores
-          </Link>
         </div>
         <div className="nav-center">
           <Link className="navbar-brand" to="/">
@@ -39,7 +36,7 @@ function Navbar() {
           {user ? (
             <>
               <Link className="nav-link fa-solid fa-user" to="/profile" onClick={closeNavbar}>
-                {user.email}
+                {user.username}
               </Link>
               <button
                 className="btn login-btn"

@@ -14,9 +14,10 @@ body {
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    padding: 50px;
+    padding-left: 100px;
+    padding-right: 60%;
     color: #ff0099;
-    background: url('../src/assets/BANNER-HOME.webp') no-repeat center center fixed;
+    background: url('../src/assets/BANNER-HOME.webp') no-repeat center center ;
     background-size: cover;
   }
 
@@ -25,10 +26,10 @@ body {
   }
   
   .homepage h1 {
-    font-size: 5rem;
+    font-size: 8rem;
     font-weight: bold;
     line-height: 1;
-    text-transform: uppercase;
+    text-align: left;
   }
   
   .homepage p {
@@ -86,4 +87,27 @@ body {
     text-decoration: none;
     margin-left: 10px;
   }
+
+  .home-sections{
+    padding: 50px;
+  }
   
+  .mojate-section{
+    background: url('../src/assets/registrate.jpg') no-repeat center center;
+    background-size: cover;
+    padding: 150px 50px;
+  }
+  .section-name{
+    font-size: 1rem;
+    font-weight: bold;
+    color: #ff0099;
+  }
+
+  .subsection-name{
+    font-size: 5rem;
+    font-weight: bold;
+    color: #ff0099;
+    width: 50%;
+    line-height: 5rem;
+    margin-top: 30px;
+  }

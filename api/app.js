@@ -5,6 +5,7 @@ const { loadSession } = require("./config/session.config");
 const { loadSessionUser } = require("./middleware/session.middleware");
 const cors = require("cors");
 
+
 /* DB init */
 require("./config/db.config");
 
@@ -23,6 +24,7 @@ app.use(loadSessionUser);
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(logger("dev"));
+
 
 
 /* API Routes Configuration */

@@ -8,6 +8,8 @@ const users = require("../controllers/users.controller");
 const sessions = require("../controllers/sessions.controller");
 const auth = require("../middleware/session.middleware");
 const storage = require("../config/storage.config");
+const category = require("../models/category.model");
+const categories = require("../controllers/categories.controller");
 
 router.get("/stories", stories.list);
 router.get("/stories/categories", stories.getCategories); 
@@ -19,6 +21,8 @@ router.patch("/stories/:id", auth.isAuthenticated, stories.update);
 
 router.post("/stories/:id/comments", auth.isAuthenticated, stories.createComment);
 router.get("/stories/:id/comments/:commentId", auth.isAuthenticated, stories.detailComment);
+router.get("/categories", categories.getCategories);
+router.post("/categories", categories.createCategory);
 
 router.post("/users", users.create);
 router.patch("/users/me", auth.isAuthenticated, users.update);

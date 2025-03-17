@@ -1,0 +1,78 @@
+.categories-container {
+    width: 100%;
+    margin: 20px 0;
+  }
+  
+  .categories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 10px 0;
+  }
+  
+  .category-item {
+    text-decoration: none;
+    color: inherit;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .category-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  }
+  
+  .category-content {
+    height: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    color: white;
+    text-align: center;
+  }
+  
+  .category-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1;
+  }
+  
+  .category-content h3 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin: 0;
+    position: relative;
+    z-index: 2;
+  }
+  
+  .stories-count {
+    font-size: 0.9rem;
+    margin-top: 8px;
+    position: relative;
+    z-index: 2;
+  }
+  
+  .categories-loading,
+  .categories-error,
+  .categories-empty {
+    text-align: center;
+    padding: 30px;
+    font-size: 1.1rem;
+    color: #666;
+  }
+  
+  .categories-error {
+    color: #ff0099;
+  }

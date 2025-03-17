@@ -1,24 +1,54 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import { listCategorias } from "../../../../services/api-services";
 import CategoryItem from "../category-item";
-import * as PatatapadApi from "../../../../services/api-services";
-import "./categories-list.css"
+import "./categories-list.css";
 
-function CategoriaList({ className = "" }) {
+function CategoriesList() {
   const [categories, setCategories] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    PatatapadApi.listCategorias()
-      .then((data) => setCategories(data))
-      .catch((error) => console.error(error));
+    setLoading(true);
+    listCategorias()
+      .then((data) => {
+        setCategories(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error("Error fetching categories:", err);
+        setError("No pudimos cargar las categorías");
+        setLoading(false);
+      });
   }, []);
 
+  if (loading) {
+    return <div className="categories-loading">Cargando categorías...</div>;
+  }
+
+  if (error) {
+    return <div className="categories-error">{error}</div>;
+  }
+
+  if (!categories || categories.length === 0) {
+    return <div className="categories-empty">No hay categorías disponibles</div>;
+  }
+
   return (
-    <div className={`d-flex flex-wrap gap-3 ${className}`}>
-      {categories.map((categoria) => (
-        <CategoryItem key={categoria.id} category={categoria} />
-      ))}
+    <div className="categories-container">
+      <div className="categories-grid">
+        {categories.map((category) => (
+          <CategoryItem 
+            key={category._id} 
+            category={{
+              id: category._id,
+              nombre: category.name
+            }} 
+          />
+        ))}
+      </div>
     </div>
   );
 }
 
-export default CategoriaList;
+export default CategoriesList;

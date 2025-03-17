@@ -59,16 +59,17 @@ function StoryModal({ onClose, onSave }) {
           </div>
 
           <div className="modal-actions">
-            <button type="submit" className="btn btn-primary rounded-pill">
-              Guardar
-            </button>
-            <button
+          <button
               type="button"
               className="btn btn-secondary rounded-pill"
               onClick={onClose}
             >
               Cancelar
             </button>
+            <button type="submit" className="btn btn-primary rounded-pill">
+              Guardar
+            </button>
+
           </div>
         </form>
       </div>
